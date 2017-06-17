@@ -1,0 +1,63 @@
+{
+    "properties": {
+        "ListaArbitros": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "ListaCategorias": {
+            "items": {
+                "properties": {
+                    "GanadorBronce": {
+                        "type": "integer"
+                    },
+                    "GanadorOro": {
+                        "type": "integer"
+                    },
+                    "GanadorPlata": {
+                        "type": "integer"
+                    },
+                    "Modalidad": {
+                        "type": "string"
+                    },
+                    "idCategoria": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "ListaCompetidores": {
+            "items": {
+                "properties": {
+                    "DNICompetidor": {
+                        "type": "integer"
+                    },
+                    "NombreEscuela": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "ListaEnfrentamientos": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "ListaEscuelas": {
+            "items": {
+                "type": "string"
+            },
+            "type": "array"
+        },
+        "yearCampeonato": {
+            "type": "integer"
+        }
+    },
+    "type": "object"
+}

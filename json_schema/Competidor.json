@@ -1,0 +1,44 @@
+{
+    "properties": {
+        "Bronce": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "DNICompetidor": {
+            "type": "integer"
+        },
+        "EnfrentamientosGanados": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "EnfrentamientosPerdidos": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "NombreCompetidor": {
+            "type": "string"
+        },
+        "NombreEscuela": {
+            "type": "string"
+        },
+        "Oro": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "Plata": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
+        }
+    },
+    "type": "object"
+}

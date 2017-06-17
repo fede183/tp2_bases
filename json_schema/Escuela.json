@@ -1,0 +1,20 @@
+{
+    "properties": {
+        "ListaCampeonatos": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "ListaCompetidores": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "NombreEscuela": {
+            "type": "string"
+        }
+    },
+    "type": "object"
+}

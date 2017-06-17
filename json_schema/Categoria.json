@@ -1,0 +1,44 @@
+{
+    "properties": {
+        "GanadorBronce": {
+            "properties": {
+                "DNICompetidor": {
+                    "type": "integer"
+                },
+                "NombreEscuela": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "GanadorOro": {
+            "properties": {
+                "DNICompetidor": {
+                    "type": "integer"
+                },
+                "NombreEscuela": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "GanadorPlata": {
+            "properties": {
+                "DNICompetidor": {
+                    "type": "integer"
+                },
+                "NombreEscuela": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Modalidad": {
+            "type": "string"
+        },
+        "idCategoria": {
+            "type": "integer"
+        }
+    },
+    "type": "object"
+}

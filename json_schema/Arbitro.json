@@ -1,0 +1,11 @@
+{
+    "properties": {
+        "DNIArbitro": {
+            "type": "integer"
+        },
+        "NombreArbitro": {
+            "type": "string"
+        }
+    },
+    "type": "object"
+}

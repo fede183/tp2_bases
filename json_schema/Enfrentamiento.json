@@ -1,0 +1,11 @@
+{
+    "properties": {
+        "idEnfrentamiento": {
+            "type": "integer"
+        },
+        "yearCampeonato": {
+            "type": "integer"
+        }
+    },
+    "type": "object"
+}

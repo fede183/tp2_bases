@@ -59,8 +59,35 @@ class TKDDBgenerator:
             print('La base de datos: ', self.db_name, ' No existe')
 
     def insert(self, table_name, register):
-        r.db(self.db_name).table(table_name).insert(register).run(self.connection)
+        r.db(self.db_name) \
+            .table(table_name) \
+            .insert(register) \
+            .run(self.connection)
         print('Insertado correctamente: ', register, table_name)
+
+    def append(self, table_name, pk_value, attribute, value):
+        if table_name in self.table_infos.keys():
+            table = self.table_infos[table_name]
+            r.db(self.db_name) \
+                .table(table['name']) \
+                .filter(r.row[table['pk']] == pk_value) \
+                .update({attribute: r.row[attribute].append(value)}) \
+                .run(self.connection)
+        else:
+            print('La tabla especificada no forma parte de la base de datos')
+
+    def update(self, table_name, pk_value, attribute, value):
+        if table_name in self.table_infos.keys():
+            table = self.table_infos[table_name]
+            r.db(self.db_name) \
+                .table(table['name']) \
+                .filter(r.row[table['pk']] == pk_value) \
+                .update({attribute: value}) \
+                .run(self.connection)
+        else:
+            print('La tabla especificada no forma parte de la base de datos')
+
+    # Specific table insert update append methods
 
     def insert_arbitro(self, DNIArbitro, NombreArbitro):
         new_document = {
@@ -69,7 +96,8 @@ class TKDDBgenerator:
         }
         self.insert(self.table_infos['Arbitro']['name'], new_document)
 
-    def insert_categoria(self, idCategoria, Modalidad, GanadorOro, GanadorPlata, GanadorBronce):
+    def insert_categoria(self, idCategoria, Modalidad,
+                         GanadorOro={}, GanadorPlata={}, GanadorBronce={}):
         new_document = {
             'idCategoria': idCategoria,
             'Modalidad': Modalidad,
@@ -79,21 +107,71 @@ class TKDDBgenerator:
         }
         self.insert(self.table_infos['Categoria']['name'], new_document)
 
-    def insert_escuela(self, NombreEscuela, ListaCompetidores, ListaCampeonatos):
+    def update_medalla_from_categoria(self, idCategoria, medalla, DNICompetidor, NombreEscuela):
+        new_document = {
+            'DNICompetidor': DNICompetidor,
+            'NombreEscuela': NombreEscuela
+        }
+        self.update('Categoria', idCategoria, medalla, new_document)
+
+    def insert_escuela(self, NombreEscuela, ListaCompetidores=[], ListaCampeonatos=[]):
         new_document = {
             'NombreEscuela': NombreEscuela,
             'ListaCompetidores': ListaCompetidores,
-            'ListaCampeonatos': ListaCampeonatoso
+            'ListaCampeonatos': ListaCampeonatos,
         }
         self.insert(self.table_infos['Escuela']['name'], new_document)
 
-    def insert_campeonato(self, yearCampeonato, ListaCompetidores, ListaCategorias):
+    def add_competidor_to_escuela(self, NombreEscuela, DNICompetidor, Oro, Plata, Bronce):
         new_document = {
-            'yearCampeonato': NombreEscuela,
+            'DNICompetidor': DNICompetidor,
+            'Oro': Oro,
+            'Plata': Bronce,
+            'Bronce': Plata
+        }
+        self.append('Escuela', NombreEscuela, 'ListaCompetidores', new_document)
+
+    def add_campeonato_to_escuela(self, NombreEscuela, yearCampeonato):
+        self.append('Escuela', NombreEscuela, 'ListaCampeonatos', yearCampeonato)
+
+    def insert_campeonato(self, yearCampeonato, ListaCompetidores=[], ListaCategorias=[],
+                          ListaEscuelas=[], ListaArbitros=[], ListaEnfrentamientos=[]):
+        new_document = {
+            'yearCampeonato': yearCampeonato,
             'ListaCompetidores': ListaCompetidores,
-            'ListaCategorias': ListaCategorias
+            'ListaCategorias': ListaCategorias,
+            'ListaEscuelas': ListaEscuelas,
+            'ListaArbitros': ListaArbitros,
+            'ListaEnfrentamientos': ListaEnfrentamientos
         }
         self.insert(self.table_infos['Campeonato']['name'], new_document)
+
+    def add_competidor_to_campeonato(self, yearCampeonato, DNICompetidor, NombreEscuela):
+        new_document = {
+            'DNICompetidor': DNICompetidor,
+            'NombreEscuela': NombreEscuela
+        }
+        self.append('Campeonato', yearCampeonato, 'ListaCompetidores', new_document)
+
+    def add_categoria_to_campeonato(self, yearCampeonato, idCategoria,
+                                    Modalidad, GanadorOro, GanadorPlata, GanadorBronce):
+        new_document = {
+            'idCategoria': idCategoria,
+            'Modalidad': Modalidad,
+            'GanadorOro': GanadorOro,
+            'GanadorPlata': GanadorPlata,
+            'GanadorBronce': GanadorBronce
+        }
+        self.append('Campeonato', yearCampeonato, 'ListaCategorias', new_document)
+
+    def add_escuela_to_campeonato(self, yearCampeonato, NombreEscuela):
+        self.append('Campeonato', yearCampeonato, 'ListaEscuelas', NombreEscuela)
+
+    def add_arbitro_to_campeonato(self, yearCampeonato, DNIArbitro):
+        self.append('Campeonato', yearCampeonato, 'ListaArbitros', DNIArbitro)
+
+    def add_enfrentamiento_to_campeonato(self, yearCampeonato, idEnfrentamiento):
+        self.append('Campeonato', yearCampeonato, 'ListaEnfrentamientos', idEnfrentamiento)
 
     def insert_enfrentamiento(self, idEnfrentamiento, yearCampeonato):
         new_document = {
@@ -102,13 +180,25 @@ class TKDDBgenerator:
         }
         self.insert(self.table_infos['Enfrentamiento']['name'], new_document)
 
-    def insert_competidor(self,):
+    def insert_competidor(self, DNICompetidor, NombreCompetidor, NombreEscuela,
+                          EnfrentamientosPerdidos=[], EnfrentamientosGanados=[], Oro=[], Plata=[], Bronce=[]):
         new_document = {
             'DNICompetidor': DNICompetidor,
             'NombreCompetidor': NombreCompetidor,
             'NombreEscuela': NombreEscuela,
+            'EnfrentamientosPerdidos': EnfrentamientosPerdidos,
+            'EnfrentamientosGanados': EnfrentamientosGanados,
             'Oro': Oro,
             'Plata': Plata,
             'Bronce': Bronce
         }
         self.insert(self.table_infos['Competidor']['name'], new_document)
+
+    def add_medalla_to_competidor(self, DNICompetidor, medalla, idCategoria):
+        self.append('Competidor', DNICompetidor, medalla, idCategoria)
+
+    def add_enfrentamiento_ganado_to_competidor(self, DNICompetidor, idEnfrentamiento):
+        self.append('Competidor', DNICompetidor, 'EnfrentamientosGanados', idEnfrentamiento)
+
+    def add_enfrentamiento_perdido_to_competidor(self, DNICompetidor, idEnfrentamiento):
+        self.append('Competidor', DNICompetidor, 'EnfrentamientosPerdidos', idEnfrentamiento)
