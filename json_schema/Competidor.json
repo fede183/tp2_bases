@@ -1,25 +1,22 @@
-{
+"Competidor":{"type": "object",
     "properties": {
-        "Bronce": {
+        "Bronce": {"type": "array",
             "items": {
                 "type": "integer"
-            },
-            "type": "array"
+            }
         },
         "DNICompetidor": {
             "type": "integer"
         },
         "EnfrentamientosGanados": {
-            "items": {
+            "items": {"type": "array",
                 "type": "integer"
-            },
-            "type": "array"
+            }
         },
         "EnfrentamientosPerdidos": {
-            "items": {
+            "items": {"type": "array",
                 "type": "integer"
-            },
-            "type": "array"
+            }
         },
         "NombreCompetidor": {
             "type": "string"
@@ -27,18 +24,15 @@
         "NombreEscuela": {
             "type": "string"
         },
-        "Oro": {
+        "Oro": {"type": "array",
             "items": {
                 "type": "integer"
-            },
-            "type": "array"
+            }
         },
-        "Plata": {
+        "Plata": {"type": "array",
             "items": {
                 "type": "integer"
-            },
-            "type": "array"
+            }
         }
-    },
-    "type": "object"
+    }
 }

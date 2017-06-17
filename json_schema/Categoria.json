@@ -1,6 +1,6 @@
-{
+"Categoria":{"type": "object",
     "properties": {
-        "GanadorBronce": {
+        "GanadorBronce": {"type": "object",
             "properties": {
                 "DNICompetidor": {
                     "type": "integer"
@@ -8,10 +8,9 @@
                 "NombreEscuela": {
                     "type": "string"
                 }
-            },
-            "type": "object"
+            }
         },
-        "GanadorOro": {
+        "GanadorOro": {"type": "object",
             "properties": {
                 "DNICompetidor": {
                     "type": "integer"
@@ -19,10 +18,9 @@
                 "NombreEscuela": {
                     "type": "string"
                 }
-            },
-            "type": "object"
+            }
         },
-        "GanadorPlata": {
+        "GanadorPlata": {"type": "object",
             "properties": {
                 "DNICompetidor": {
                     "type": "integer"
@@ -30,8 +28,7 @@
                 "NombreEscuela": {
                     "type": "string"
                 }
-            },
-            "type": "object"
+            }
         },
         "Modalidad": {
             "type": "string"
@@ -39,6 +36,5 @@
         "idCategoria": {
             "type": "integer"
         }
-    },
-    "type": "object"
+    }
 }

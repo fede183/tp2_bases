@@ -1,0 +1,201 @@
+En esta sección mostraremos el diseño lógico de la base de datos usando \textbf{JSONSchema}.
+
+\begin{lstlisting}
+  "Arbitro":{"type": "object",
+      "properties": {
+          "DNIArbitro": {
+              "type": "integer"
+          },
+          "NombreArbitro": {
+              "type": "string"
+          },
+          "ListaCampeonatos": {"type": "array",
+              "items": {
+                  "type": "integer"
+              }
+          }
+      }
+  }
+\end{lstlisting}
+
+\begin{lstlisting}
+  "Campeonato":{"type": "object",
+      "properties": {
+          "yearCampeonato": {
+              "type": "integer"
+          },
+          "ListaArbitros":{"type": "array",
+              "items": {
+                  "type": "integer"
+              }
+          },
+          "ListaCategorias": { "type": "array",
+              "items": {"type": "object",
+                  "properties": {
+                      "GanadorBronce": {
+                          "type": "integer"
+                      },
+                      "GanadorOro": {
+                          "type": "integer"
+                      },
+                      "GanadorPlata": {
+                          "type": "integer"
+                      },
+                      "Modalidad": {
+                          "type": "string"
+                      },
+                      "idCategoria": {
+                          "type": "integer"
+                      }
+                  }
+
+              }
+          },
+          "ListaCompetidores": {"type": "array",
+              "items": { "type": "object",
+                  "properties": {
+                      "DNICompetidor": {
+                          "type": "integer"
+                      },
+                      "NombreEscuela": {
+                          "type": "string"
+                      },
+                      "EnfrentamientosGanados": {
+                          "items": {"type": "array",
+                              "type": "integer"
+                          }
+                      }
+                  }
+              }
+          },
+          "ListaEnfrentamientos": {"type": "array",
+              "items": {
+                  "type": "integer"
+              }
+          },
+          "ListaEscuelas": {"type": "array",
+              "items": {
+                  "type": "string"
+              }
+          }
+      }
+
+  }
+\end{lstlisting}
+
+\begin{lstlisting}
+  "Categoria":{"type": "object",
+      "properties": {
+          "GanadorBronce": {"type": "object",
+              "properties": {
+                  "DNICompetidor": {
+                      "type": "integer"
+                  },
+                  "NombreEscuela": {
+                      "type": "string"
+                  }
+              }
+          },
+          "GanadorOro": {"type": "object",
+              "properties": {
+                  "DNICompetidor": {
+                      "type": "integer"
+                  },
+                  "NombreEscuela": {
+                      "type": "string"
+                  }
+              }
+          },
+          "GanadorPlata": {"type": "object",
+              "properties": {
+                  "DNICompetidor": {
+                      "type": "integer"
+                  },
+                  "NombreEscuela": {
+                      "type": "string"
+                  }
+              }
+          },
+          "Modalidad": {
+              "type": "string"
+          },
+          "idCategoria": {
+              "type": "integer"
+          }
+      }
+  }
+\end{lstlisting}
+
+\begin{lstlisting}
+  "Competidor":{"type": "object",
+      "properties": {
+          "Bronce": {"type": "array",
+              "items": {
+                  "type": "integer"
+              }
+          },
+          "DNICompetidor": {
+              "type": "integer"
+          },
+          "EnfrentamientosGanados": {
+              "items": {"type": "array",
+                  "type": "integer"
+              }
+          },
+          "EnfrentamientosPerdidos": {
+              "items": {"type": "array",
+                  "type": "integer"
+              }
+          },
+          "NombreCompetidor": {
+              "type": "string"
+          },
+          "NombreEscuela": {
+              "type": "string"
+          },
+          "Oro": {"type": "array",
+              "items": {
+                  "type": "integer"
+              }
+          },
+          "Plata": {"type": "array",
+              "items": {
+                  "type": "integer"
+              }
+          }
+      }
+  }
+\end{lstlisting}
+
+\begin{lstlisting}
+  "Enfrentamiento":{"type": "object",
+      "properties": {
+          "idEnfrentamiento": {
+              "type": "integer"
+          },
+          "yearCampeonato": {
+              "type": "integer"
+          }
+      }
+  }
+\end{lstlisting}
+
+\begin{lstlisting}
+  "Escuela":{"type": "object",
+      "properties": {
+          "ListaCampeonatos": {"type": "array",
+              "items": {
+                  "type": "integer"
+              }
+          },
+          "ListaCompetidores": {"type": "array",
+              "items": {
+                  "type": "integer"
+              }
+          },
+          "NombreEscuela": {
+              "type": "string"
+          }
+      }
+  }
+\end{lstlisting}

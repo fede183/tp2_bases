@@ -1,13 +1,15 @@
-{
+"Campeonato":{"type": "object",
     "properties": {
-        "ListaArbitros": {
+        "yearCampeonato": {
+            "type": "integer"
+        },
+        "ListaArbitros":{"type": "array",
             "items": {
                 "type": "integer"
-            },
-            "type": "array"
+            }
         },
-        "ListaCategorias": {
-            "items": {
+        "ListaCategorias": { "type": "array",
+            "items": {"type": "object",
                 "properties": {
                     "GanadorBronce": {
                         "type": "integer"
@@ -24,40 +26,37 @@
                     "idCategoria": {
                         "type": "integer"
                     }
-                },
-                "type": "object"
-            },
-            "type": "array"
+                }
+
+            }
         },
-        "ListaCompetidores": {
-            "items": {
+        "ListaCompetidores": {"type": "array",
+            "items": { "type": "object",
                 "properties": {
                     "DNICompetidor": {
                         "type": "integer"
                     },
                     "NombreEscuela": {
                         "type": "string"
+                    },
+                    "EnfrentamientosGanados": {
+                        "items": {"type": "array",
+                            "type": "integer"
+                        }
                     }
-                },
-                "type": "object"
-            },
-            "type": "array"
+                }
+            }
         },
-        "ListaEnfrentamientos": {
+        "ListaEnfrentamientos": {"type": "array",
             "items": {
                 "type": "integer"
-            },
-            "type": "array"
+            }
         },
-        "ListaEscuelas": {
+        "ListaEscuelas": {"type": "array",
             "items": {
                 "type": "string"
-            },
-            "type": "array"
-        },
-        "yearCampeonato": {
-            "type": "integer"
+            }
         }
-    },
-    "type": "object"
+    }
+
 }
