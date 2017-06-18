@@ -4,6 +4,7 @@
 from db_manager import DBmanager
 import rethinkdb as r
 from rethinkdb.errors import *
+from collections import defaultdict
 
 class Consultas:
 
@@ -15,14 +16,11 @@ class Consultas:
 		iterador_enfretamientos = r.db(self.db_name).table('Enfrentamiento') \
 									.filter(r.row["yearCampeonato"] == year_campeonato) \
 									.run(self.connection)
-		dic_competidor = {}
+		dic_competidor = defaultdict(int)
 		# Itero sobre los enfrentamientos
 		for doc in iterador_enfretamientos:
 			competidor = doc.get("DNIGanador")
-			if competidor in dic_competidor:
-				dic_competidor[competidor] += 1
-			else:
-				dic_competidor[competidor] = 1	
+			dic_competidor[competidor] += 1
 		iterador_enfretamientos.close()
 		return  dic_competidor
 
@@ -97,16 +95,13 @@ class Consultas:
 		dic_campeonato = {}
 		# Itero sobre los campeonatos
 		for campeonato in iterador_campeonatos:
-			dic_escuelas = {}
+			dic_escuelas = defaultdict(int)
 			lista_competidores = campeonato.get("ListaCompetidores")
 			competidores_escuela_ganador = 0
 			# Para cada campeonato itero sobre sus competidores
 			for competidor in lista_competidores:
 				escuela_competidor = competidor.get("NombreEscuela")
-				if escuela_competidor in dic_escuelas:
-					dic_escuelas[escuela_competidor] += 1
-				else:
-					dic_escuelas[escuela_competidor] = 1
+				dic_escuelas[escuela_competidor] += 1
 			# Si hay empate, me quedo con uno
 			dic_campeonato[campeonato.get("yearCampeonato")] = max(dic_escuelas, key=dic_escuelas.get)
 
@@ -114,37 +109,28 @@ class Consultas:
 		return dic_campeonato
 
 	def competidor_mas_medallas_por_modalidad(self):
-		dic_de_dic__modalidad = {'Formas': {}, 'Combate': {}, 'Rotura':{}}
 		iterador_campeonatos = r.db(self.db_name).table('Campeonato').run(self.connection)
+		dic_de_dic_modalidad = {'Formas': defaultdict(int), 'Combate': defaultdict(int), 'Rotura': defaultdict(int)}
 		# Itero sobre los campeonatos
 		for campeonato in iterador_campeonatos:
 			lista_categorias = campeonato.get("ListaCategorias")
 			# Para cada campeonato itero sobre sus categorias
 			for categoria in lista_categorias:
 				# Tomo los ganadadores de medallas
-				ganador_oro = (categoria.get("GanadorOro")).get("DNICompetidor")
+				ganador_oro = categoria.get("GanadorOro").get("DNICompetidor")
 				ganador_plata = categoria.get("GanadorPlata").get("DNICompetidor")
 				ganador_bronce = categoria.get("GanadorBronce").get("DNICompetidor")
 				# Esto es una referencia
-				dic_aux =dic_de_dic__modalidad[categoria.get("Modalidad")]
-				if ganador_oro in dic_aux:
-					dic_aux[ganador_oro] += 1
-				else:
-					dic_aux[ganador_oro] = 1
-				if ganador_plata in dic_aux:
-					dic_aux[ganador_plata] += 1
-				else:
-					dic_aux[ganador_plata] = 1
-				if ganador_bronce in dic_aux:
-					dic_aux[ganador_bronce] += 1
-				else:
-					dic_aux[ganador_bronce] = 1
+				dic_aux = dic_de_dic_modalidad[categoria.get("Modalidad")]
+				dic_aux[ganador_oro] += 1
+				dic_aux[ganador_plata] += 1
+				dic_aux[ganador_bronce] += 1
 
 		dic_resultado = {}
 		# Si hay empate entre competidores, solo me da el que aparece primero
-		dic_resultado["Formas"] = max(dic_de_dic__modalidad["Formas"], key=dic_de_dic__modalidad["Formas"].get)
-		dic_resultado["Combate"] = max(dic_de_dic__modalidad["Combate"], key=dic_de_dic__modalidad["Combate"].get)
-		dic_resultado["Rotura"] = max(dic_de_dic__modalidad["Rotura"], key=dic_de_dic__modalidad["Rotura"].get)
+		dic_resultado["Formas"] = max(dic_de_dic_modalidad["Formas"], key=dic_de_dic_modalidad["Formas"].get)
+		dic_resultado["Combate"] = max(dic_de_dic_modalidad["Combate"], key=dic_de_dic_modalidad["Combate"].get)
+		dic_resultado["Rotura"] = max(dic_de_dic_modalidad["Rotura"], key=dic_de_dic_modalidad["Rotura"].get)
 
 		iterador_campeonatos.close()
 		return dic_resultado
