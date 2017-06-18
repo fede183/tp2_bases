@@ -97,23 +97,18 @@ class Consultas:
 		iterador_campeonatos = r.db(self.db_name).table('Campeonato').run(self.connection)
 		# Itero sobre los campeonatos
 		for campeonato in iterador_campeonatos:
-			nombre_escuela_ganadora = ""
+			dic_escuelas = {}
+			lista_competidores = campeonato.get("ListaCompetidores")
 			competidores_escuela_ganador = 0
-			lista_escuelas = campeonato.get("ListaEscuelas")
-			# Para cada campeonato itero sobre sus escuelas
-			for escuela in lista_escuelas:
-				competidores_escuela_actual = 0
-				lista_competidores = campeonato.get("ListaCompetidores")
-				# Para cada competido en campeonato me fijo si pertenece a la escuela
-				for competidor in lista_competidores:
-					if competidor.get("NombreEscuela") == escuela:
-						competidores_escuela_actual += 1
-				# Actualizo escuela con mayor competidores en el campeonato
-				if competidores_escuela_actual > competidores_escuela_ganador:
-					competidores_escuela_ganador = competidores_escuela_actual
-					nombre_escuela_ganadora = escuela
-
-			dic_campeonato[campeonato.get("yearCampeonato")] = nombre_escuela_ganadora
+			# Para cada campeonato itero sobre sus competidores
+			for competidor in lista_competidores:
+				escuela_competidor = competidor.get("NombreEscuela")
+				if escuela_competidor in dic_escuelas:
+					dic_escuelas[escuela_competidor] += 1
+				else:
+					dic_escuelas[escuela_competidor] = 1
+			# Si hay empate, me quedo con uno
+			dic_campeonato[campeonato.get("yearCampeonato")] = max(dic_escuelas, key=dic_escuelas.get)
 
 		iterador_campeonatos.close()
 		return dic_campeonato
@@ -152,6 +147,7 @@ class Consultas:
 		dic_resultado["Combate"] = max(dic_de_dic__modalidad["Combate"], key=dic_de_dic__modalidad["Combate"].get)
 		dic_resultado["Rotura"] = max(dic_de_dic__modalidad["Rotura"], key=dic_de_dic__modalidad["Rotura"].get)
 
+		iterador_campeonatos.close()
 		return dic_resultado
 
 
@@ -184,12 +180,12 @@ if __name__ == "__main__":
 	# print("Resultado Consulta 2.4: ", arbitro)
 
 	# Consulta 2.5
-	# resul = prueba.escuela_mayor_numero_comp_por_campeonato()
-	# print(resul)
+	resul = prueba.escuela_mayor_numero_comp_por_campeonato()
+	print(resul)
 
 	# Consulta 2.6
-	resul = prueba.competidor_mas_medallas_por_modalidad()
-	print(resul)
+	# resul = prueba.competidor_mas_medallas_por_modalidad()
+	# print(resul)
 
 	# data_base.drop_db()
 
