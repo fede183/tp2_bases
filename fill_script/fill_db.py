@@ -89,12 +89,16 @@ class TKDDBgenerator:
 
     # Specific table insert update append methods
 
-    def insert_arbitro(self, DNIArbitro, NombreArbitro):
+    def insert_arbitro(self, DNIArbitro, NombreArbitro, ListaCampeonatos=[]):
         new_document = {
             'DNIArbitro': DNIArbitro,
-            'NombreArbitro': NombreArbitro
+            'NombreArbitro': NombreArbitro,
+            'ListaCampeonatos': ListaCampeonatos
         }
         self.insert(self.table_infos['Arbitro']['name'], new_document)
+
+    def add_campeonato_to_arbitro(self, DNIArbitro, yearCampeonato):
+        self.append('Arbitro', DNIArbitro, 'ListaCampeonatos', yearCampeonato)
 
     def insert_categoria(self, idCategoria, Modalidad,
                          GanadorOro={}, GanadorPlata={}, GanadorBronce={}):
@@ -118,7 +122,7 @@ class TKDDBgenerator:
         new_document = {
             'NombreEscuela': NombreEscuela,
             'ListaCompetidores': ListaCompetidores,
-            'ListaCampeonatos': ListaCampeonatos,
+            'ListaCampeonatos': ListaCampeonatos
         }
         self.insert(self.table_infos['Escuela']['name'], new_document)
 
