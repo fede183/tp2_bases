@@ -7,9 +7,9 @@ from rethinkdb.errors import *
 
 class DBmanager:
 
-    def __init__(self):
+    def __init__(self, db_name='Itf_TKD_WC_historico'):
         self.connection = r.connect("localhost", 28015)
-        self.db_name = 'Itf_TKD_WC_historico'
+        self.db_name = db_name
         self.table_infos = {
             'Arbitro': {'name': 'Arbitro', 'pk': 'DNIArbitro'},
             'Escuela': {'name': 'Escuela', 'pk': 'NombreEscuela'},
