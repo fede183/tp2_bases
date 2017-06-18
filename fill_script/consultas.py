@@ -118,6 +118,43 @@ class Consultas:
 		iterador_campeonatos.close()
 		return dic_campeonato
 
+	# Sin testear
+	def competidor_mas_medallas_por_modalidad(self):
+		dic_de_dic__modalidad = {'Formas': {}, 'Combate': {}, 'Rotura':{}}
+		iterador_campeonatos = r.db(self.db_name).table('Campeonato').run(self.connection)
+		# Itero sobre los campeonatos
+		for campeonato in iterador_campeonatos:
+			lista_categorias = campeonato.get("ListaCategorias")
+			# Para cada campeonato itero sobre sus categorias
+			for categoria in lista_categorias:
+				# Tomo los ganadadores de medallas
+				ganador_oro = (categoria.get("GanadorOro")).get("DNICompetidor")
+				ganador_plata = categoria.get("GanadorPlata").get("DNICompetidor")
+				ganador_bronce = categoria.get("GanadorBronce").get("DNICompetidor")
+				# Esto es una referencia
+				dic_aux =dic_de_dic__modalidad[categoria.get("Modalidad")]
+				if ganador_oro in dic_aux:
+					dic_aux[ganador_oro] += 1
+				else:
+					dic_aux[ganador_oro] = 1
+				if ganador_plata in dic_aux:
+					dic_aux[ganador_plata] += 1
+				else:
+					dic_aux[ganador_plata] = 1
+				if ganador_bronce in dic_aux:
+					dic_aux[ganador_bronce] += 1
+				else:
+					dic_aux[ganador_bronce] = 1
+
+		dic_resultado = {}
+		# Si hay empate entre competidores, solo me da el que aparece primero
+		dic_resultado["Formas"] = max(dic_de_dic__modalidad["Formas"], key=dic_de_dic__modalidad["Formas"].get)
+		dic_resultado["Combate"] = max(dic_de_dic__modalidad["Combate"], key=dic_de_dic__modalidad["Combate"].get)
+		dic_resultado["Rotura"] = max(dic_de_dic__modalidad["Rotura"], key=dic_de_dic__modalidad["Rotura"].get)
+
+		return dic_resultado
+
+
 if __name__ == "__main__":
 	
 	data_base = DBmanager()
@@ -151,6 +188,8 @@ if __name__ == "__main__":
 	# print(resul)
 
 	# Consulta 2.6
-	
+	resul = prueba.competidor_mas_medallas_por_modalidad()
+	print(resul)
+
 	# data_base.drop_db()
 
