@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import fill_db as f
+from db_manager import DBmanager
 import rethinkdb as r
 from rethinkdb.errors import *
 
@@ -32,7 +32,7 @@ class Consultas:
 
 if __name__ == "__main__":
 	
-	data_base = f.TKDDBgenerator()
+	data_base = DBmanager()
 	data_base.create_db()
 	
 	# Arbitros
