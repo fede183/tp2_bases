@@ -4,7 +4,7 @@
             "type": "integer"
         },
         "ListaCampeonatos": {
-            "items": {},
+            "items": {"type": "integer"},
             "type": "array"
         },
         "NombreArbitro": {

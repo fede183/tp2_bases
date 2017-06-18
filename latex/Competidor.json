@@ -1,7 +1,7 @@
 "Competidor":{"type": "object",
     "properties": {
         "Bronce": {"type": "array",
-            "items": {}
+            "items": {"type": "integer"}
         },
         "DNICompetidor": {
             "type": "integer"
@@ -13,10 +13,10 @@
             "type": "string"
         },
         "Oro": {"type": "array",
-            "items": {}
+            "items": {"type": "integer"}
         },
         "Plata": {"type": "array",
-            "items": {}
+            "items": {"type": "integer"}
         }
     
 }
