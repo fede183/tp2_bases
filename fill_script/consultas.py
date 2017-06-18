@@ -12,16 +12,17 @@ class Consultas:
 		self.connection = connection
 
 	def enfrentamientos_ganados_por_competidor_campeonato(self, year_campeonato):
+		iterador_enfretamientos = r.db(self.db_name).table('Enfrentamiento') \
+									.filter(r.row["yearCampeonato"] == year_campeonato) \
+									.run(self.connection)
 		dic_competidor = {}
-		iterador_enfretamientos = r.db(self.db_name).table('Enfrentamiento').run(self.connection)
 		# Itero sobre los enfrentamientos
 		for doc in iterador_enfretamientos:
-			if doc.get("yearCampeonato") == year_campeonato:
-				competidor = doc.get("DNIGanador")
-				if competidor in dic_competidor:
-					dic_competidor[competidor] += 1
-				else:
-					dic_competidor[competidor] = 1	
+			competidor = doc.get("DNIGanador")
+			if competidor in dic_competidor:
+				dic_competidor[competidor] += 1
+			else:
+				dic_competidor[competidor] = 1	
 		iterador_enfretamientos.close()
 		return  dic_competidor
 
