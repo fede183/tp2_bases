@@ -7,26 +7,31 @@ anterior.
   \caption{Diagrama entidad relación}
 \end{figure}
 
-A continuación mostraremos la forma en la que se resolvieron las consultas pedidas y como las desiciones tomadas las
+A continuación mostraremos la forma en la que se resolvieron las consultas pedidas y como las decisiones tomadas las
 optimizan.
 
 \subsection{Consultas}
 \begin{enumerate}
 \item Se nos pide la cantidad de enfrentamientos ganados por competidor para un campeonato dado. Se nos da como parámetro
-el año del campeonato y el DNI del competidor.
+el año del campeonato. Para resolver la consulta, recorremos todos los enfrentamientos. Contamos la cantidad de
+enfrentamientos ganados para cada competidor que coincidan con el año del campeonato. Esto lo podemos realizar de forma optima
+ya que el enfrentamiento referencia a campeonato, por lo tanto tiene el año del campeonato. Además referencia al ganador y al
+perdedor, por lo tanto puede usarlos para contar la cantidad de victorias por cada competidor. 
 
 \item La cantidad de medallas por nombre de escuela en toda la historia. Se nos da el NombreEscuela, que es la clave primaria de Escuela.
 Buscamos por este nombre hasta posicionarnos en la escuela pedida. Recorro la ListaCompetidores. Para cada competidor, realizo la suma de las medallas de los
 tres tipos(oro, plata y bronce). Existen dos procesos en esta consulta. El primero es la búsqueda en el documento Escuela
 usando el NombreEscuela. Esta consulta es inevitable dado que necesitamos de la entrada de la escuela pedida para obtener
 los demás datos. La segunda parte consiste en realizar la suma de todas las medallas de todas las entradas de
-competidores. Esta segunda parte se beneficia del hecho de que poseeo ListaCompetidores gracias a que se tomo la desición
+competidores. Esta segunda parte se beneficia del hecho de que posee ListaCompetidores gracias a que se tomo la decisión
 embebido parcialmente a los competidores en el documento Escuela.
 
 \item Para cada escuela, el campeonato donde ganó más medalla. Para realizar la consulta recorro el conjunto de
-escuelas y para cada una, a su vez, recorro los campeonatos referenciados en ListaCampeonatos. Dentro de cada
-campeonato recorro la ListaCompetidores buscando los competidores cuyo NombreEscuela coincida con el que estoy usando y
-sumo la cantidad de medallas de cada tipo. Me quedo con el campeonato con mayor cantidad de medallas.
+escuelas y, para cada una, recorro los campeonatos referenciados en ListaCampeonatos. Dentro de cada
+campeonato recorro la ListaCategorias buscando a los ganadores de los distintos tipos de medallas cuyo NombreEscuela
+coincida con el que estoy usando y sumo la cantidad de medallas de cada tipo. Me quedo con el campeonato con mayor
+cantidad de medallas. Esta consulta fue optimizada gracias a que los documentos Escuela tienen referencia a los documentos
+Campeonato(por su año). Se accede a cada documento campeonato y se utiliza que estos tienen embebidos a los Competidores.
 
 \item Los árbitros que participaron en al menos 4 campeonatos. La consulta se realiza recorriendo los documentos
 de Árbitro contando los Campeonatos usando ListaCampeonatos. Finalmente nos quedamos con los árbitros donde la ListaCampeonatos
@@ -36,11 +41,13 @@ al documento Campeonato.
 
 \item Las escuelas que han presentado el mayor número de competidores en cada campeonato. Recorro el conjunto de documentos
 Campeonato y para cada uno recorro su ListaEscuela y para cada NombreEscuela veo cuales de la ListaCompetidores son de esa
-Escuela.
+Escuela. La consulta es optimizada debido a que los Campeonatos tienen referencias de los documentos Escuela y embebido parcialmente
+a Competidor por el atributo NombreEscuela. Con lo cual, no se necesita acceder a otro documento que no sean todas las
+entradas de Campeonatos. Esto último es necesario ya que necesitamos información de todos.
 
 \item Obtener los competidores que más medallas obtuvieron por modalidad. Por cada entrada de el documento Competidor,
 cuento las medallas de cada tipo que coinciden con la modalidad pedida. Después me quedo con los competidores que más entradas
-totales tienen. Esta consulta se beneficia de que el Competidor tiene embebido parcialmente el documento Categoria por el
-atributo Modalidad. Por lo tanto, no es necesario acceder a ningún otro documento que no sea Competidor.
+totales tienen. Esta consulta se beneficia de que el Competidor tiene embebido el documento Categoría. Por lo tanto, no es
+necesario acceder a ningún otro documento que no sea Competidor.
 
 \end{enumerate}

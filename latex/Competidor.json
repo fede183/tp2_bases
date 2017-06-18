@@ -1,0 +1,28 @@
+"Competidor":{"type": "object",
+    "properties": {
+        "DNICompetidor": {
+            "type": "integer"
+        },
+        "NombreCompetidor": {
+            "type": "string"
+        },
+        "NombreEscuela": {
+            "type": "string"
+        },
+        "Oro": {"type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "Plata": {"type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+	"Bronce": {"type": "array",
+            "items": {
+                "type": "integer"
+            }
+        }
+    }
+}

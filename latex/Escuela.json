@@ -1,0 +1,17 @@
+"Escuela":{"type": "object",
+    "properties": {
+        "ListaCampeonatos": {"type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "ListaCompetidores": {"type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "NombreEscuela": {
+            "type": "string"
+        }
+    }
+}

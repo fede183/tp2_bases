@@ -9,10 +9,10 @@
         "ListaCompetidores": {
             "items": {
                 "properties": {
-                    "DNICompetidor": {
+                    "Bronce": {
                         "type": "integer"
                     },
-                    "Bronce": {
+                    "DNICompetidor": {
                         "type": "integer"
                     },
                     "Oro": {

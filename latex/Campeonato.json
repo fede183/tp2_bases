@@ -1,0 +1,47 @@
+"Campeonato":{"type": "object",
+    "properties": {
+        "yearCampeonato": {
+            "type": "integer"
+        },
+        "ListaCategorias": { "type": "array",
+            "items": {"type": "object",
+                "properties": {
+                    "GanadorBronce": {
+                        "type": "integer"
+                    },
+                    "GanadorOro": {
+                        "type": "integer"
+                    },
+                    "GanadorPlata": {
+                        "type": "integer"
+                    },
+                    "Modalidad": {
+                        "type": "string"
+                    },
+                    "idCategoria": {
+                        "type": "integer"
+                    }
+                }
+
+            }
+        },
+        "ListaCompetidores": {"type": "array",
+            "items": { "type": "object",
+                "properties": {
+                    "DNICompetidor": {
+                        "type": "integer"
+                    },
+                    "NombreEscuela": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ListaEscuelas": {"type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+
+}

@@ -1,5 +1,9 @@
 {
     "properties": {
+        "Bronce": {
+            "items": {},
+            "type": "array"
+        },
         "DNICompetidor": {
             "type": "integer"
         },
@@ -9,22 +13,12 @@
         "NombreEscuela": {
             "type": "string"
         },
-        "Bronce": {
-            "items": {
-                "type": "integer"
-            },
-            "type": "array"
-        },
         "Oro": {
-            "items": {
-                "type": "integer"
-            },
+            "items": {},
             "type": "array"
         },
         "Plata": {
-            "items": {
-                "type": "integer"
-            },
+            "items": {},
             "type": "array"
         }
     },

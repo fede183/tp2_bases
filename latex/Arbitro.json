@@ -1,0 +1,15 @@
+"Arbitro":{"type": "object",
+    "properties": {
+        "DNIArbitro": {
+            "type": "integer"
+        },
+        "NombreArbitro": {
+            "type": "string"
+        },
+        "ListaCampeonatos": {"type": "array",
+            "items": {
+                "type": "integer"
+            }
+        }
+    }
+}
