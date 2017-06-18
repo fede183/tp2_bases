@@ -93,8 +93,8 @@ class Consultas:
 		return list(iterador_arbitros)
 	
 	def escuela_mayor_numero_comp_por_campeonato(self):
-		dic_campeonato = {}
 		iterador_campeonatos = r.db(self.db_name).table('Campeonato').run(self.connection)
+		dic_campeonato = {}
 		# Itero sobre los campeonatos
 		for campeonato in iterador_campeonatos:
 			dic_escuelas = {}
