@@ -27,15 +27,15 @@ class Consultas:
 		return  dic_competidor
 
 	def cantidad_medallas_escuela(self):
-		dic_escuelas = {}
 		iterador_escuelas = r.db(self.db_name).table('Escuela').run(self.connection)
+		dic_escuelas = {}
 		# Itero sobre las escuelas
-		for escuela in iterador_escuelas:		
+		for escuela in iterador_escuelas:
 			medallas = 0
 			lista_competidores = escuela.get("ListaCompetidores")
 			# Para cada escuela itero sobre sus competidores
 			for comp in lista_competidores:
-				medallas += len(comp.get("Oro")) + len(comp.get("Plata")) + len(comp.get("Bronce"))
+				medallas += comp.get("Oro") + comp.get("Plata") + comp.get("Bronce")
 			
 			dic_escuelas[escuela.get("NombreEscuela")] = medallas
 		

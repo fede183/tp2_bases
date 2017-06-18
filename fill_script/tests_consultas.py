@@ -46,7 +46,7 @@ if __name__ == "__main__":
 	test_consulta_1(fill.d)
 
 	print("test_consulta_2")
-	# test_consulta_2(fill.d)
+	test_consulta_2(fill.d)
 
 	print("test_consulta_3")
 	test_consulta_3(fill.d)
@@ -59,3 +59,4 @@ if __name__ == "__main__":
 
 	print("test_consulta_6")
 	test_consulta_6(fill.d)
+
