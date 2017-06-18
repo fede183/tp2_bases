@@ -43,19 +43,24 @@ class Consultas:
 		return dic_escuelas
 
 	def campeonato_mas_medallas_escuela(self):
-		dic_escuelas = {}
 		iterador_escuelas = r.db(self.db_name).table('Escuela').run(self.connection)
+		iterador_campeonatos = r.db(self.db_name).table('Campeonato').run(self.connection)
+		# Guardo los campeonatos en un diccionario
+		dic_campeonatos = {}
+		for campeonato in iterador_campeonatos:
+			year = campeonato.get("yearCampeonato")
+			dic_campeonatos[year] = campeonato.get("ListaCategorias")
+		dic_escuelas = {}
 		# Itero sobre las escuelas
 		for escuela in iterador_escuelas:
 			# Placeholder
-			year_campeonato_mas_medallas = 0
-			medallas_campeonato_ganador = 0
+			year_con_mas_medallas = 0
+			mayor_cantidad_de_medallas_en_un_campeonato = 0
 			lista_campeonatos = escuela.get("ListaCampeonatos")
 			# Para cada escuelo itero sobre sus campeonatos
 			for year_campeonato in lista_campeonatos:
 				medallas_campeonato = 0
-				campeonato = r.db(self.db_name).table('Campeonato').get(year_campeonato).run(self.connection)
-				lista_categorias = campeonato.get("ListaCategorias")
+				lista_categorias = dic_campeonatos[year_campeonato]
 				# Para cada campeonato itero sobre sus categorias
 				for categoria in lista_categorias:
 					ganador_oro = categoria.get("GanadorOro")
@@ -69,14 +74,15 @@ class Consultas:
 					if ganador_bronce.get("NombreEscuela") == escuela.get("NombreEscuela"):
 						medallas_campeonato += 1
 				# Actualizo campeonato mas ganador
-				if medallas_campeonato > medallas_campeonato_ganador:
-					year_campeonato_mas_medallas = year_campeonato
-					medallas_campeonato_ganador = medallas_campeonato
+				if medallas_campeonato > mayor_cantidad_de_medallas_en_un_campeonato:
+					year_con_mas_medallas = year_campeonato
+					mayor_cantidad_de_medallas_en_un_campeonato = medallas_campeonato
 			
-			dic_escuelas[escuela.get("NombreEscuela")] = year_campeonato_mas_medallas
+			dic_escuelas[escuela.get("NombreEscuela")] = year_con_mas_medallas
 		
 		iterador_escuelas.close()
-		return  dic_escuelas	
+		iterador_campeonatos.close()
+		return  dic_escuelas
 
 	def arbitros_con_mas_de_4_campeonatos(self):
 		lista_arbitros = []

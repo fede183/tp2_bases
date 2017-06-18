@@ -15,7 +15,7 @@ def test_consulta_1(data_base):
 def test_consulta_2(data_base):
 	consultas = Consultas(data_base.db_name, data_base.connection)
 	medallas = consultas.cantidad_medallas_escuela()
-	print("Resultado Consulta 2.2: ", medallas)
+	print(medallas)
 
 def test_consulta_3(data_base):
 	consultas = Consultas(data_base.db_name, data_base.connection)
@@ -25,7 +25,7 @@ def test_consulta_3(data_base):
 def test_consulta_4(data_base):
 	consultas = Consultas(data_base.db_name, data_base.connection)
 	arbitro = consultas.arbitros_con_mas_de_4_campeonatos()
-	print("Resultado Consulta 2.4: ", arbitro)
+	print(arbitro)
 
 def test_consulta_5(data_base):
 	consultas = Consultas(data_base.db_name, data_base.connection)
