@@ -26,11 +26,11 @@ Escuela. La lista de competidores contiene la cantidad de medallas de cada uno d
 históricamente. Solo hace falta sumar los tres tipos para obtener el histórico de medallas del competidor.
 
 \item Para cada escuela, el campeonato donde ganó más medalla. La consulta se divide en dos partes. La primer parte consiste
-en recorrer todos los campeonatos y guardarme las categorías que están en ListaCategorias, utilizando para esto el año del
+en recorrer todos los campeonatos y guardarme las categorías que están en ListaCategorías, utilizando para esto el año del
 campeonato. En la segunda parte recorro todas las entradas en el documento Escuela. Por cada una de estas, utilizo las
 categorías guardadas en el paso anterior. Recorro todas las categorías y, por cada una, cuento la cantidad de ganadores de
-medallas que pertenecen a la escuela. Esta consulta está optimizada usando que Campeonato tiene embebido a Categoria, con lo
-cual podemos adquirir de cada campeonato los ganadores de medallas de los tres tipos. Además Categoria tiene embebido parcialmente
+medallas que pertenecen a la escuela. Esta consulta está optimizada usando que Campeonato tiene embebido a Categoría, con lo
+cual podemos adquirir de cada campeonato los ganadores de medallas de los tres tipos. Además Categoría tiene embebido parcialmente
 a Competidor por el atributo NombreEscuela, con lo cual podemos usar este dato para identificar a la escuela que pertenece cada
 medalla. Por último, el documento Escuela tiene una referencia a Campeonato. Esto significa que Escuela tiene los yearCampeonato
 de todos en los que mando competidores. En el primer paso habíamos guardado las categorías por el año del campeonato y ,
@@ -57,6 +57,6 @@ que más competidores participaron.
 cuento las medallas de cada tipo que coinciden con cada modalidad. Después me quedo con el DNICompetidor a los cuales
 son ganadores de más medallas de cada tipo. Esta consulta se beneficia de que el CompCampeonatoetidor tiene embebido
 el documento Categoría. Por lo tanto, no es necesario acceder a ningún otro documento que no sea Campeonato. Desde el embebido
- de Categoria obtengo los DNS's de los competidores que resultaron ganadores.
+ de Categoría obtengo los DNI's de los competidores que resultaron ganadores.
 
 \end{enumerate}
