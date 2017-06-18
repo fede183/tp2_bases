@@ -11,7 +11,6 @@ class Consultas:
 		self.db_name = db_name
 		self.connection = connection
 
-	# Sin testear
 	def enfrentamientos_ganados_por_competidor_campeonato(self, year_campeonato):
 		dic_competidor = {}
 		iterador_enfretamientos = r.db(self.db_name).table('Enfrentamiento').run(self.connection)
@@ -26,7 +25,6 @@ class Consultas:
 		iterador_enfretamientos.close()
 		return  dic_competidor
 
-	# Sin testear
 	def cantidad_medallas_escuela(self):
 		dic_escuelas = {}
 		iterador_escuelas = r.db(self.db_name).table('Escuela').run(self.connection)
@@ -43,7 +41,6 @@ class Consultas:
 		iterador_escuelas.close()
 		return dic_escuelas
 
-	# Sin testear
 	def campeonato_mas_medallas_escuela(self):
 		dic_escuelas = {}
 		iterador_escuelas = r.db(self.db_name).table('Escuela').run(self.connection)
@@ -80,7 +77,6 @@ class Consultas:
 		iterador_escuelas.close()
 		return  dic_escuelas	
 
-	# Sin testear
 	def arbitros_con_mas_de_4_campeonatos(self):
 		lista_arbitros = []
 		iterador_arbitros = r.db(self.db_name).table('Arbitro').run(self.connection)
@@ -91,7 +87,6 @@ class Consultas:
 		iterador_arbitros.close()
 		return lista_arbitros
 	
-	# Sin testear
 	def escuela_mayor_numero_comp_por_campeonato(self):
 		dic_campeonato = {}
 		iterador_campeonatos = r.db(self.db_name).table('Campeonato').run(self.connection)
@@ -113,7 +108,6 @@ class Consultas:
 		iterador_campeonatos.close()
 		return dic_campeonato
 
-	# Sin testear
 	def competidor_mas_medallas_por_modalidad(self):
 		dic_de_dic__modalidad = {'Formas': {}, 'Combate': {}, 'Rotura':{}}
 		iterador_campeonatos = r.db(self.db_name).table('Campeonato').run(self.connection)
@@ -149,43 +143,3 @@ class Consultas:
 
 		iterador_campeonatos.close()
 		return dic_resultado
-
-
-if __name__ == "__main__":
-	
-	data_base = DBmanager()
-	#data_base.create_db()
-	
-	# Arbitros
-	# data_base.insert_arbitro(100, "Gerardo", [1, 2, 3, 4])
-	# data_base.insert_arbitro(200, "Castrilli", [1, 2])
-	# data_base.insert_arbitro(300, "Colina", [1, 2, 3, 4, 5])
-	
-	prueba = Consultas(data_base.db_name, data_base.connection)
-
-	# Consulta 2.1
-	# resul = prueba.enfrentamientos_ganados_por_competidor_campeonato(2016)
-	# print(resul)
-	
-	# Consulta 2.2
-	# medallas = prueba.cantidad_medallas_escuela()
-	# print("Resultado Consulta 2.2: ", medallas)
-
-	# Consulta 2.3
-	# resul = prueba.campeonato_mas_medallas_escuela()
-	# print(resul)
-
-	# Consulta 2.4
-	# arbitro = prueba.arbitros_con_mas_de_4_campeonatos()
-	# print("Resultado Consulta 2.4: ", arbitro)
-
-	# Consulta 2.5
-	resul = prueba.escuela_mayor_numero_comp_por_campeonato()
-	print(resul)
-
-	# Consulta 2.6
-	# resul = prueba.competidor_mas_medallas_por_modalidad()
-	# print(resul)
-
-	# data_base.drop_db()
-

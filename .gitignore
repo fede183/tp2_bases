@@ -1,1 +1,9 @@
 **.pyc
+env/
+.vscode/
+*.aux
+*.log
+*.out
+*.pdf
+*.toc
+rethinkdb_data/
