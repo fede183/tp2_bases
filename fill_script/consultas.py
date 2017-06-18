@@ -85,14 +85,12 @@ class Consultas:
 		return  dic_escuelas
 
 	def arbitros_con_mas_de_4_campeonatos(self):
-		lista_arbitros = []
-		iterador_arbitros = r.db(self.db_name).table('Arbitro').run(self.connection)
-		for doc in iterador_arbitros:
-			cantidad_campeonatos = len(doc.get("ListaCampeonatos"))
-			if cantidad_campeonatos >= 4:
-				lista_arbitros.append(doc.get("DNIArbitro"))
+		iterador_arbitros = r.db(self.db_name).table('Arbitro') \
+									.filter(r.row["ListaCampeonatos"].count() > 3) \
+									.map(lambda arbitro: arbitro["DNIArbitro"]) \
+									.run(self.connection)
 		iterador_arbitros.close()
-		return lista_arbitros
+		return list(iterador_arbitros)
 	
 	def escuela_mayor_numero_comp_por_campeonato(self):
 		dic_campeonato = {}

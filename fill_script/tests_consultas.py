@@ -39,7 +39,7 @@ def test_consulta_6(data_base):
 
 
 if __name__ == "__main__":
-	fill = DBfill(3, 10, 10, 2)
+	fill = DBfill(4, 10, 10, 2)
 	fill.load_db()
 
 	print("test_consulta_1")
