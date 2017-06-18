@@ -1,18 +1,22 @@
 El desarrollo de una base de datos no relacional para guardar el histórico de los Campeonatos Mundiales de
-Taekwon-do ITF, consiguió que mostrarnos como funciona en la práctica el diseño e implementación de una base basada en
-documentos.\\
+Taekwon-do ITF consiguió mostrarnos como funciona en la práctica el diseño e implementación de una base basada en
+documentos.
 
-El diagrama de entidad relación especifico para el problema resulto ser mucho más fácil de hacer y más corto.
-Esto se debe que este diagrama sirve para resolver un problema con menor número de detalles que el visto en el TP1.
+El Diagrama de Entidad Relación específico para el problema resultó ser mucho más fácil de hacer y más corto que el del TP anterior.
+Esto se debe que este diagrama resuelve un problema con menor número de detalles que el visto en el TP1.
+
 Por otro lado, el diagrama de interrelación de documentos resulto en un desafío mucho más interesante. Obligándonos
-muchas veces a replantear las decisiones tomadas e, incluso, a modificar el DER. Aunque, en esto último, siempre se hizo
-manteniendo la coherencia respecto a las entidades y sus relaciones. Algunas de las dificultades surgidas fueron, por ejemplo,
+muchas veces a replantear las decisiones tomadas e, incluso, a modificar el DER. Esto último siempre se hizo
+manteniendo la coherencia respecto a las entidades y sus relaciones.
+
+Algunas de las dificultades surgidas fueron, por ejemplo,
 la representación de categoría o modalidad en un campeonato. Dado que en el trabajo práctico anterior solo se modelaba un
 campeonato, las categorías eran exclusivas de este. Sin embargo, al tener muchos campeonatos las categorías se podrían
 relacionar con ellos de varias formas. Una de las primeras ideas que se barajaron fue que cada categoría perteneciera a
 muchos campeonatos. Al final, para facilitar las consultas se opto por representar cada categoría según el año de cada
-campeonato. Con lo cual, hay varias categorías por año sin importar la cantidad que existan en los demás. Las mayoría
-de los problemas de diseño fueron solucionados discutiendo como obtener la mejor representación de la base de datos
+campeonato. Con lo cual, hay varias categorías por año sin importar la cantidad que existan en los demás.
+
+La mayoría de los problemas de diseño fueron solucionados discutiendo como obtener la mejor representación de la base de datos
 para optimizar las consultas que se pedían. Se podría concluir que, a pesar de las dificultades de diseño, el modelo de
 bases de datos no relacionales basadas en documentos ofrece herramientas que simplifican la implementación, una vez el
 diseño está terminado. A su vez, el diseño no presenta grandes dificultades fuera de las decisiones que se deben tomar.
