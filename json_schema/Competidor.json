@@ -1,31 +1,19 @@
 {
     "properties": {
-        "Bronce": {
-            "items": {
-                "type": "integer"
-            },
-            "type": "array"
-        },
         "DNICompetidor": {
             "type": "integer"
-        },
-        "EnfrentamientosGanados": {
-            "items": {
-                "type": "integer"
-            },
-            "type": "array"
-        },
-        "EnfrentamientosPerdidos": {
-            "items": {
-                "type": "integer"
-            },
-            "type": "array"
         },
         "NombreCompetidor": {
             "type": "string"
         },
         "NombreEscuela": {
             "type": "string"
+        },
+        "Bronce": {
+            "items": {
+                "type": "integer"
+            },
+            "type": "array"
         },
         "Oro": {
             "items": {

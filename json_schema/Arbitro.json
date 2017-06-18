@@ -3,6 +3,10 @@
         "DNIArbitro": {
             "type": "integer"
         },
+        "ListaCampeonatos": {
+            "items": {},
+            "type": "array"
+        },
         "NombreArbitro": {
             "type": "string"
         }

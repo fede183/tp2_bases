@@ -1,22 +1,40 @@
 {
     "properties": {
-        "ListaArbitros": {
-            "items": {
-                "type": "integer"
-            },
-            "type": "array"
-        },
         "ListaCategorias": {
             "items": {
                 "properties": {
                     "GanadorBronce": {
-                        "type": "integer"
+                        "properties": {
+                            "DNICompetidor": {
+                                "type": "integer"
+                            },
+                            "NombreEscuela": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
                     },
                     "GanadorOro": {
-                        "type": "integer"
+                        "properties": {
+                            "DNICompetidor": {
+                                "type": "integer"
+                            },
+                            "NombreEscuela": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
                     },
                     "GanadorPlata": {
-                        "type": "integer"
+                        "properties": {
+                            "DNICompetidor": {
+                                "type": "integer"
+                            },
+                            "NombreEscuela": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
                     },
                     "Modalidad": {
                         "type": "string"
@@ -40,12 +58,6 @@
                     }
                 },
                 "type": "object"
-            },
-            "type": "array"
-        },
-        "ListaEnfrentamientos": {
-            "items": {
-                "type": "integer"
             },
             "type": "array"
         },

@@ -5,6 +5,12 @@
         },
         "yearCampeonato": {
             "type": "integer"
+        },
+        "DNIGanador": {
+            "type": "integer"
+        },
+        "DNIPerdedor": {
+            "type": "integer"
         }
     },
     "type": "object"

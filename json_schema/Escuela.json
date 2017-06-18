@@ -8,7 +8,21 @@
         },
         "ListaCompetidores": {
             "items": {
-                "type": "integer"
+                "properties": {
+                    "DNICompetidor": {
+                        "type": "integer"
+                    },
+                    "Bronce": {
+                        "type": "integer"
+                    },
+                    "Oro": {
+                        "type": "integer"
+                    },
+                    "Plata": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
             },
             "type": "array"
         },
