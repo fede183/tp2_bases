@@ -6,8 +6,22 @@
             }
         },
         "ListaCompetidores": {"type": "array",
-            "items": {
-                "type": "integer"
+            "items": {"type": "object",
+                "properties": {
+                    "Bronce": {
+                        "type": "integer"
+                    },
+                    "DNICompetidor": {
+                        "type": "integer"
+                    },
+                    "Oro": {
+                        "type": "integer"
+                    },
+                    "Plata": {
+                        "type": "integer"
+                    }
+                }
+
             }
         },
         "NombreEscuela": {

@@ -1,19 +1,37 @@
 "Campeonato":{"type": "object",
     "properties": {
-        "yearCampeonato": {
-            "type": "integer"
-        },
-        "ListaCategorias": { "type": "array",
-            "items": {"type": "object",
-                "properties": {
-                    "GanadorBronce": {
-                        "type": "integer"
+        "ListaCategorias": {"type": "array",
+            "items": {
+                "properties": {"type": "object",
+                    "GanadorBronce": {"type": "object",
+                        "properties": {
+                            "DNICompetidor": {
+                                "type": "integer"
+                            },
+                            "NombreEscuela": {
+                                "type": "string"
+                            }
+                        }
                     },
-                    "GanadorOro": {
-                        "type": "integer"
+                    "GanadorOro": {"type": "object",
+                        "properties": {
+                            "DNICompetidor": {
+                                "type": "integer"
+                            },
+                            "NombreEscuela": {
+                                "type": "string"
+                            }
+                        }
                     },
-                    "GanadorPlata": {
-                        "type": "integer"
+                    "GanadorPlata": {"type": "object",
+                        "properties": {
+                            "DNICompetidor": {
+                                "type": "integer"
+                            },
+                            "NombreEscuela": {
+                                "type": "string"
+                            }
+                        }
                     },
                     "Modalidad": {
                         "type": "string"
@@ -22,11 +40,10 @@
                         "type": "integer"
                     }
                 }
-
             }
         },
         "ListaCompetidores": {"type": "array",
-            "items": { "type": "object",
+            "items": {"type": "object",
                 "properties": {
                     "DNICompetidor": {
                         "type": "integer"
@@ -41,7 +58,9 @@
             "items": {
                 "type": "string"
             }
+        },
+        "yearCampeonato": {
+            "type": "integer"
         }
     }
-
 }

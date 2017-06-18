@@ -3,13 +3,11 @@
         "DNIArbitro": {
             "type": "integer"
         },
+        "ListaCampeonatos": {"type": "array",
+            "items": {}
+        },
         "NombreArbitro": {
             "type": "string"
-        },
-        "ListaCampeonatos": {"type": "array",
-            "items": {
-                "type": "integer"
-            }
         }
     }
 }
