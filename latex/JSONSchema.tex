@@ -24,11 +24,6 @@ En esta sección mostraremos el diseño lógico de la base de datos usando \text
           "yearCampeonato": {
               "type": "integer"
           },
-          "ListaArbitros":{"type": "array",
-              "items": {
-                  "type": "integer"
-              }
-          },
           "ListaCategorias": { "type": "array",
               "items": {"type": "object",
                   "properties": {
@@ -59,18 +54,8 @@ En esta sección mostraremos el diseño lógico de la base de datos usando \text
                       },
                       "NombreEscuela": {
                           "type": "string"
-                      },
-                      "EnfrentamientosGanados": {
-                          "items": {"type": "array",
-                              "type": "integer"
-                          }
                       }
                   }
-              }
-          },
-          "ListaEnfrentamientos": {"type": "array",
-              "items": {
-                  "type": "integer"
               }
           },
           "ListaEscuelas": {"type": "array",
@@ -137,16 +122,6 @@ En esta sección mostraremos el diseño lógico de la base de datos usando \text
           "DNICompetidor": {
               "type": "integer"
           },
-          "EnfrentamientosGanados": {
-              "items": {"type": "array",
-                  "type": "integer"
-              }
-          },
-          "EnfrentamientosPerdidos": {
-              "items": {"type": "array",
-                  "type": "integer"
-              }
-          },
           "NombreCompetidor": {
               "type": "string"
           },
@@ -174,6 +149,12 @@ En esta sección mostraremos el diseño lógico de la base de datos usando \text
               "type": "integer"
           },
           "yearCampeonato": {
+              "type": "integer"
+          }
+          "Ganador": {
+              "type": "integer"
+          }
+          "Perdedor": {
               "type": "integer"
           }
       }

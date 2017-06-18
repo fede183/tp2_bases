@@ -13,12 +13,10 @@ optimizan.
 \subsection{Consultas}
 \begin{enumerate}
 \item Se nos pide la cantidad de enfrentamientos ganados por competidor para un campeonato dado. Se nos da como parámetro
-el año del campeonato. Para resolver la consulta, recorremos todos los competidores en ListaCompetidores del campeonato.
-Contamos la cantidad de enfrentamientos ganados usando EnfrentamientosGanados. Podemos realizar esta consulta con este
-grado de optimización en el cual no buscamos otros documentos y nos basta solamente usar el documento de Campeonato. Esto
-se debe a que Campeonato tiene embebido parcialmente a los documentos de Competidores que participan en él. A su vez, los
-Competidores tienen referenciados a los enfrentamientos que ganaron y perdieron. El embebido parcial es sobre el
-DNICompetidor, para buscar cada competidor, y sobre EnfrentamientosGanados para poder contar la cantidad de victorias.
+el año del campeonato. Para resolver la consulta, recorremos todos los enfrentamientos. Contamos la cantidad de
+enfrentamientos ganados para cada competidor que coincidan con el año del campeonato. Esto lo podemos realizar de forma optima
+ya que el enfrentamiento referencia a campeonato, por lo tanto tiene el año del campeonato. Además referencia al ganador y al
+perdedor, por lo tanto puede usarlos para contar la cantidad de victorias por cada competidor. 
 
 \item La cantidad de medallas por nombre de escuela en toda la historia. Se nos da el NombreEscuela, que es la clave primaria de Escuela.
 Buscamos por este nombre hasta posicionarnos en la escuela pedida. Recorro la ListaCompetidores. Para cada competidor, realizo la suma de las medallas de los
