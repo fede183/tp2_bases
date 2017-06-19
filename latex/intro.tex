@@ -1,22 +1,22 @@
 En el presente Trabajo Práctico diseñamos e implementamos una base de datos no relacional para guardar el histórico de los
 Campeonatos Mundiales de Taekwon-do ITF. Esta base de datos permite guardar los enfrentamientos, con su respectivo
 resultado, de las categorías que conforman cada campeonato. Para realizar esta labor construimos un Modelo Conceptual representado con un
-Diagrama de Entidad Relación(DER) que sirvió como base para el Diagrama de Interacción de Documentos(DID). Este último está
+Diagrama de Entidad Relación (DER) que sirvió como base para el Diagrama de Interacción de Documentos (DID). Este último está
 pensado y construido para optimizar las consultas pedidas. La implementación fue realizada usando la base de datos basada
-en documentos \textbf{RethinkDb}. A lo largo del presente informe detallaremos las distintas partes del DER, las decisiones
-tomadas para construir el DID y mostraremos la documentación del diseño lógico de la base de datos(usando \textbf{JSONSchema}).
+en documentos \textbf{RethinkDB}. A lo largo del presente informe detallaremos las distintas partes del DER, las decisiones
+tomadas para construir el DID y mostraremos la documentación del diseño lógico de la base de datos (usando \textbf{JSONSchema}).
 
 \subsection{Asunciones}
-\begin{itemize}
-\item Consideramos que no se debe modelar la totalidad del problema propuesto en el TP1. Solamente representamos y trabajamos
-sobre la información dada en el enunciado y las consultas pedidas. En este contexto, omitimos muchas entidades que no mostraban
-participación alguna en el modelo pedido. Por ejemplo, la entidad Pais.
-\item Asumimos que, en un mismo año, no hay más de un campeonato.
-\item Obviamos los enfrentamientos por equipos y consideramos que en un combate determinado de cualquier categoría solo hay
-dos participantes. Por lo tanto, solo hay un vencedor por enfrentamiento.
-\item Debido al item anterior, las modalidades por equipos son omitidas. Con lo cual, nos quedan solamente Formas, Combate y
-Rotura.
-\item Descartamos los requisitos para participar en cada modalidad(como peso o sexo).
-\item Asumimos que los árbitros son un mismo tipo.
-\item Descartamos a los Coach y consideramos que solo hay competidores.
+    \begin{itemize}
+    \item Consideramos que no se debe modelar la totalidad del problema propuesto en el TP1. Solamente representamos y trabajamos
+    sobre la información dada en el enunciado y las consultas pedidas. En este contexto, omitimos muchas entidades que no mostraban
+    participación alguna en el modelo pedido. Por ejemplo, la entidad País.
+    \item Asumimos que, en un mismo año, no hay más de un campeonato.
+    \item Obviamos los enfrentamientos por equipos y consideramos que en un combate determinado de cualquier categoría solo hay
+    dos participantes. Por lo tanto, solo hay un vencedor por enfrentamiento.
+    \item Debido al ítem anterior, las modalidades por equipos son omitidas. Con lo cual, nos quedan solamente Formas, Combate y
+    Rotura.
+    \item Descartamos los requisitos para participar en cada modalidad(como peso o sexo).
+    \item Asumimos que no hay tipos distintos de árbitros.
+    \item Descartamos los Coach y consideramos que solo hay competidores.
 \end{itemize}
