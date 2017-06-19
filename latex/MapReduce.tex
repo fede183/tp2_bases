@@ -1,0 +1,14 @@
+Se eligió la consulta 2.2 del enunciado para implementarla con el patrón de procesaminto de datos clusterizados \textbf{Map Reduce} \\
+
+La consulta pide: \textit{La cantidad de medallas por nombre de escuela en toda la historia} \\
+
+Para esto, se decidió primero implementar la funcion map sobre la tabla \textit{Competidor}, que cuenta con la lista de medallas de Oro, plata y bronce que ganó. Si bien estas listas tienen el ID de la categoria embebida en la competencia donde ganó dicha medalla, como la consulta solo requeriere la cantidad de medallas ganadas, sin importar en que competencia ni que medalla es, lo único que necesitamos hacer es sumar el tamaño de las tres listas. Por otro lado, como la consulta es por escuela y no por competidor, hay que indicar al map que agrupe los campos por el atributo \textit{NombreEscuela} para que luego todas las medallas de comeptidores con el mismo \textit{NombreEscuela} sean sumados en conjunto en la etapa del reduce. \\ 
+
+El algoritmo map reduce implementa entonces:
+\begin{itemize}
+\item \textbf{map} competidor c: $\rightarrow$ (c.NombreEscuela, \textit{length}(c.Oro) + \textit{length}(c.Plata) + \textit{length}(c.Bronce))
+\item \textbf{reduce} left l, right r: $\rightarrow$ (l.key, l.value + r.value)
+\end{itemize}
+Donde left y right son valores del tipo (key,value) retornado por la función map. \\
+
+El codigo fué implemtando utilizando la \textit{API} Python y se encuentra en el archivo \textit{map_reduce.py}, las instrucciónes para utilizarlo se encuentran en el archivo README
