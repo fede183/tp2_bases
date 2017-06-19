@@ -13,3 +13,8 @@ tests_consultas.py
 map_reduce.py
 ## Iniciar multiples servidores (experimentacion sharding):
 run_server.sh
+jupyter notebook
+Dependencias: 
+* Pandas: sudo pip install pandas
+* Seaborn: sudo pip install seaborn
+* Matplotlib: sudo pip install matplotlib
